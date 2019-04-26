@@ -5,13 +5,13 @@ import com.librarysafe2payapiandroid.librarysafe2payapi.services.singleSale.add.
 
 public class SingleSaleIntegration {
 
-    private SingleSaleAddRequest singleSaleAddRequest;
+    private static SingleSaleAddRequest singleSaleAddRequest;
 
     public SingleSaleIntegration() {
     }
 
-    public void addSingleSale(SingleSaleAddCallback callback, double amount, int status) {
-        this.singleSaleAddRequest = new SingleSaleAddRequest(callback);
+    public static void addSingleSale(SingleSaleAddCallback callback, double amount, int status) {
+        singleSaleAddRequest = new SingleSaleAddRequest(callback);
         singleSaleAddRequest.addSingleSale(amount, status);
     }
 }
