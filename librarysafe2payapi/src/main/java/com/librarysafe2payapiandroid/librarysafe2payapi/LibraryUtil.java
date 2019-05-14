@@ -1,9 +1,8 @@
-package com.librarysafe2payapiandroid.librarysafe2payapi.util;
+package com.librarysafe2payapiandroid.librarysafe2payapi;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.Primitives;
-import com.librarysafe2payapiandroid.librarysafe2payapi.models.util.ResponseAPI;
 
 import java.lang.reflect.Type;
 
@@ -11,22 +10,22 @@ import retrofit2.Response;
 
 public class LibraryUtil {
 
-    public static <T> T parseResponseAPI (Response<ResponseAPI> responseRetrofit, Class<T> classToParse) {
+    protected static <T> T parseResponseAPI (Response<ResponseAPIModel> responseRetrofit, Class<T> classToParse) {
         if (responseRetrofit == null) {
-            return Primitives.wrap(classToParse).cast(new ResponseAPI());
+            return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
         }
         if (responseRetrofit.code() == 200) {
-            ResponseAPI responseAPI = responseRetrofit.body();
+            ResponseAPIModel responseAPI = responseRetrofit.body();
             if (LibraryUtil.hasErrorResponseAPI(responseAPI) == false) {
                 return LibraryUtil.parseObjectToOtherObject(responseAPI, classToParse);
             } else {
                 return Primitives.wrap(classToParse).cast(responseAPI);
             }
         }
-        return Primitives.wrap(classToParse).cast(new ResponseAPI());
+        return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
     }
 
-    public static <T> T parseObjectToOtherObject(Object responseAPI, Class<T> classToParse) {
+    protected static <T> T parseObjectToOtherObject(Object responseAPI, Class<T> classToParse) {
         Gson gSerializer = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
@@ -37,7 +36,7 @@ public class LibraryUtil {
         return Primitives.wrap(classToParse).cast(object);
     }
 
-    public static Boolean hasErrorResponseAPI (ResponseAPI responseAPI) {
+    protected static Boolean hasErrorResponseAPI (ResponseAPIModel responseAPI) {
         if (responseAPI == null) {
             return true;
         }
@@ -47,15 +46,15 @@ public class LibraryUtil {
         return true;
     }
 
-    public static Boolean checkTypeResponseAPI (Object object) {
-        if (object instanceof ResponseAPI) {
+    protected static Boolean checkTypeResponseAPI (Object object) {
+        if (object instanceof ResponseAPIModel) {
             return false;
         } else {
             return true;
         }
     }
 
-    public static boolean stringIsNull(String stringTarget) {
+    protected static boolean stringIsNull(String stringTarget) {
         if (stringTarget == null) {
             return true;
         }
@@ -67,7 +66,7 @@ public class LibraryUtil {
         return false;
     }
 
-    public static boolean doubleIsNull(double doubleTarget) {
+    protected static boolean doubleIsNull(double doubleTarget) {
 
         if (doubleTarget <= 0) {
             return true;
@@ -76,7 +75,7 @@ public class LibraryUtil {
         return false;
     }
 
-    public static boolean intIsNull(int doubleTarget) {
+    protected static boolean intIsNull(int doubleTarget) {
 
         if (doubleTarget == 0) {
             return true;

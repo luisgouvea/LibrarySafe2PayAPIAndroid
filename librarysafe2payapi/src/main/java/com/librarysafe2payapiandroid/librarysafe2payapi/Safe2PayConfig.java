@@ -1,4 +1,4 @@
-package com.librarysafe2payapiandroid.librarysafe2payapi.manager;
+package com.librarysafe2payapiandroid.librarysafe2payapi;
 
 public class Safe2PayConfig {
     private static String Key = "";

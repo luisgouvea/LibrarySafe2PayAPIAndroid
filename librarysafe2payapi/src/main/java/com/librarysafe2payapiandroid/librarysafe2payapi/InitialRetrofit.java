@@ -1,6 +1,4 @@
-package com.librarysafe2payapiandroid.librarysafe2payapi.retrofit;
-
-import com.librarysafe2payapiandroid.librarysafe2payapi.services.ServicesURL;
+package com.librarysafe2payapiandroid.librarysafe2payapi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,11 +20,11 @@ public class InitialRetrofit {
 
     private static Retrofit retrofiFeature = builderFeature.build();
 
-    public static Retrofit getRetrofitAuth() {
+    protected static Retrofit getRetrofitAuth() {
         return retrofitAuth;
     }
 
-    public static Retrofit getRetrofitFeature() {
+    protected static Retrofit getRetrofitFeature() {
         return retrofiFeature;
     }
 }

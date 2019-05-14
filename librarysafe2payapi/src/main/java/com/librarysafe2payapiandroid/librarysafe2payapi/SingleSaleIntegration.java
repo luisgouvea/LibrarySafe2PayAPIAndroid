@@ -1,7 +1,4 @@
-package com.librarysafe2payapiandroid.librarysafe2payapi.manager.singleSale;
-
-import com.librarysafe2payapiandroid.librarysafe2payapi.services.singleSale.add.SingleSaleAddCallback;
-import com.librarysafe2payapiandroid.librarysafe2payapi.services.singleSale.add.SingleSaleAddRequest;
+package com.librarysafe2payapiandroid.librarysafe2payapi;
 
 public class SingleSaleIntegration {
 
