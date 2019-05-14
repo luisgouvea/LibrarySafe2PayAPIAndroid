@@ -5,6 +5,9 @@ public class SingleSaleModel {
     private int status;
     private double amount;
 
+    protected SingleSaleModel() {
+    }
+
     protected int getStatus() {
         return status;
     }

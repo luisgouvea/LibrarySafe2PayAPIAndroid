@@ -7,7 +7,7 @@ public class SingleSaleAddRequest extends RequestBaseRetrofit implements Request
     private SingleSaleAddCallback singleSaleAddCallbackReceive;
     private SingleSaleModel singleSale;
 
-    public SingleSaleAddRequest(SingleSaleAddCallback singleSaleAddCallback) {
+    protected SingleSaleAddRequest(SingleSaleAddCallback singleSaleAddCallback) {
         this.singleSaleAddCallbackReceive = singleSaleAddCallback;
     }
 

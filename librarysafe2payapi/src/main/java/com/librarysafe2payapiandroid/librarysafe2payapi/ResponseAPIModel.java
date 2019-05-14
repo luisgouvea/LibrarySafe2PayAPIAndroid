@@ -9,7 +9,7 @@ public class ResponseAPIModel<T> {
     protected static final String errorBase = "Não foi possível comunicar-se com o servidor";
     protected static final String codeBase = "404";
 
-    public ResponseAPIModel() {
+    protected ResponseAPIModel() {
         this.setError(ResponseAPIModel.errorBase);
         this.setErrorCode(ResponseAPIModel.codeBase);
         this.setHasError(true);
