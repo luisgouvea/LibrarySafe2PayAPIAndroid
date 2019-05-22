@@ -1,30 +1,49 @@
 package com.librarysafe2payapiandroid.librarysafe2payapi;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.librarysafe2payapiandroid.librarysafe2payapi.ServicesURL.DOMAIN_BASE;
+
 public class InitialRetrofit {
 
-    private static Retrofit.Builder builderAuth =
-            new Retrofit.Builder()
-                    .baseUrl(ServicesURL.DOMAIN_BASE_AUTH)
-                    .addConverterFactory(GsonConverterFactory.create());
+//    private static Retrofit.Builder builderRetrofit =
+//            new Retrofit.Builder()
+//                    .baseUrl(DOMAIN_BASE)
+//                    .addConverterFactory(GsonConverterFactory.create());
+//
+//
+//    private static Retrofit retrofit = builderRetrofit.build();
 
-    private static Retrofit.Builder builderFeature =
-            new Retrofit.Builder()
-                    .baseUrl(ServicesURL.DOMAIN_BASE_FEATURES)
-                    .addConverterFactory(GsonConverterFactory.create());
+    protected static Retrofit getRetrofit() {
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Interceptor.Chain chain) throws IOException {
+                Request original = chain.request();
 
+                Request request = original.newBuilder()
+                        .header("X-API-KEY", Safe2PayConfig.getKey())
+                        .method(original.method(), original.body())
+                        .build();
 
-    private static Retrofit retrofitAuth = builderAuth.build();
+                return chain.proceed(request);
+            }
+        });
 
-    private static Retrofit retrofiFeature = builderFeature.build();
+        OkHttpClient client = httpClient.build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(DOMAIN_BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
 
-    protected static Retrofit getRetrofitAuth() {
-        return retrofitAuth;
-    }
-
-    protected static Retrofit getRetrofitFeature() {
-        return retrofiFeature;
+        return retrofit;
     }
 }

@@ -6,4 +6,8 @@ public class Safe2PayConfig {
     public static void setKey(String key) {
         Safe2PayConfig.Key = key;
     }
+
+    protected static String getKey() {
+        return Safe2PayConfig.Key;
+    }
 }

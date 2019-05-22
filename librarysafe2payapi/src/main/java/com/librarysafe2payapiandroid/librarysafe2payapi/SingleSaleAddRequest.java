@@ -29,7 +29,7 @@ public class SingleSaleAddRequest extends RequestBaseRetrofit implements Request
 
     @Override
     public void requestDoInBackground() {
-        SingleSaleMethodsInterface singleSaleMethodsInterface = InitialRetrofit.getRetrofitFeature().create(SingleSaleMethodsInterface.class);
+        SingleSaleMethodsInterface singleSaleMethodsInterface = InitialRetrofit.getRetrofit().create(SingleSaleMethodsInterface.class);
         Call<ResponseAPIModel> call = singleSaleMethodsInterface.addSingleSale(singleSale);
         executeRequestBase(call, this);
     }
