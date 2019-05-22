@@ -10,7 +10,7 @@ import retrofit2.Response;
 
 public class LibraryUtil {
 
-    protected static <T> T parseResponseAPI (Response<ResponseAPIModel> responseRetrofit, Class<T> classToParse) {
+    protected static <T> T parseResponseAPI(Response<ResponseAPIModel> responseRetrofit, Class<T> classToParse) {
         if (responseRetrofit == null) {
             //return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
             return null;
@@ -35,10 +35,13 @@ public class LibraryUtil {
 
         Object object = gSerializer.fromJson(json, (Type) classToParse);
 
+        if (classToParse == ResponseAPIModel.class) {
+            return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
+        }
         return Primitives.wrap(classToParse).cast(object);
     }
 
-    protected static Boolean hasErrorResponseAPI (ResponseAPIModel responseAPI) {
+    protected static Boolean hasErrorResponseAPI(ResponseAPIModel responseAPI) {
         if (responseAPI == null) {
             return true;
         }
@@ -48,7 +51,7 @@ public class LibraryUtil {
         return true;
     }
 
-    protected static Boolean checkTypeResponseAPI (Object object) {
+    protected static Boolean checkTypeResponseAPI(Object object) {
         if (object == null || object instanceof ResponseAPIModel) {
             return false;
         } else {
