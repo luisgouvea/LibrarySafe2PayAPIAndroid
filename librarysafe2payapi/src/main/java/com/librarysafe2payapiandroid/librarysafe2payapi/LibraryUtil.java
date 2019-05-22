@@ -12,7 +12,8 @@ public class LibraryUtil {
 
     protected static <T> T parseResponseAPI (Response<ResponseAPIModel> responseRetrofit, Class<T> classToParse) {
         if (responseRetrofit == null) {
-            return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
+            //return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
+            return null;
         }
         if (responseRetrofit.code() == 200) {
             ResponseAPIModel responseAPI = responseRetrofit.body();
@@ -22,7 +23,8 @@ public class LibraryUtil {
                 return Primitives.wrap(classToParse).cast(responseAPI);
             }
         }
-        return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
+        return null;
+        //return Primitives.wrap(classToParse).cast(new ResponseAPIModel());
     }
 
     protected static <T> T parseObjectToOtherObject(Object responseAPI, Class<T> classToParse) {
@@ -47,7 +49,7 @@ public class LibraryUtil {
     }
 
     protected static Boolean checkTypeResponseAPI (Object object) {
-        if (object instanceof ResponseAPIModel) {
+        if (object == null || object instanceof ResponseAPIModel) {
             return false;
         } else {
             return true;
