@@ -5,5 +5,5 @@ public class ServicesURL {
 
     protected static final String SINGLE_SALE_ADD = "SingleSaleModel/Add";
 
-    protected static final String GET_TRANSACTION = "Transaction/";
+    protected static final String GET_TRANSACTION = "Transaction";
 }
