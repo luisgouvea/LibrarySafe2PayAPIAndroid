@@ -1,9 +1,18 @@
 package com.librarysafe2payapiandroid.librarysafe2payapi;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ResponseAPIModel<T> {
+    @SerializedName("ResponseDetail")
     private T responseDetail;
+
+    @SerializedName("HasError")
     private boolean hasError;
+
+    @SerializedName("Error")
     private String error;
+
+    @SerializedName("ErrorCode")
     private String errorCode;
 
     protected static final String errorBase = "Não foi possível comunicar-se com o servidor";

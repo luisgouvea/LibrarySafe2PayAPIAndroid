@@ -18,7 +18,7 @@ public class LibraryUtil {
         if (responseRetrofit.code() == 200) {
             ResponseAPIModel responseAPI = responseRetrofit.body();
             if (LibraryUtil.hasErrorResponseAPI(responseAPI) == false) {
-                return LibraryUtil.parseObjectToOtherObject(responseAPI, classToParse);
+                return LibraryUtil.parseObjectToOtherObject(responseAPI.getResponseDetail(), classToParse);
             } else {
                 return Primitives.wrap(classToParse).cast(responseAPI);
             }
