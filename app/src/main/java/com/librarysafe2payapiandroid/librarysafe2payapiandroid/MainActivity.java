@@ -12,11 +12,13 @@ import com.librarysafe2payapiandroid.librarysafe2payapi.TransactionIntegration;
 public class MainActivity extends AppCompatActivity implements GetTransactionCallback {
 
     private GetTransactionCallback getTransactionCallback = this;
+    private String key = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Safe2PayConfig.setKey("77CE92E1F1044F079DFD4C3383FB5BB0");
+        Safe2PayConfig.setKey(key);
 
         TransactionIntegration.getTransaction(getTransactionCallback, 413125);
     }
